@@ -1,0 +1,14 @@
+a23f867b8a6db21df36926e065989cbd *DESCRIPTION
+e866207e1eb308fa21c006140189ac48 *NAMESPACE
+86a6700d42962be936b6e51372577b3a *R/rriskBayes-package.R
+1431f842ff468bf48f44c1db9e2a0f62 *R/rriskBayes_functions_v2.2.R
+1551651263497f509b8284e315bab98c *man/PEMGUI.Rd
+e555754b315387fba50dad65e71d6962 *man/ZIPGUI.Rd
+6d5801811c6c6aa174b215e837eaf2cc *man/bayesmodelClass-class.Rd
+d17104c01a1b9359ac46cfbaead64f27 *man/diagnostics.Rd
+3c271702a37ae9f7b62f552ba84d5951 *man/plotDiag.Rd
+9f889c6f235a87c46b6b58f8451712d6 *man/rrisk.BayesPEM.Rd
+b5413dd9c71989e339f6a5f0310cc967 *man/rrisk.BayesZIP.Rd
+b83a3459c621b93975e8c68df983a345 *man/rrisk.samplesBgr.Rd
+ce975dd6dbddb197ae0a3196a0614ca2 *man/rriskBayes-package.Rd
+4427075bad02e68325a7542920e5f4f4 *man/show-methods.Rd
