@@ -55,7 +55,7 @@
   \code{\link{rrisk.BayesPEM}}.
 }
 \examples{
-\dontrun{rrisk.samplesBgr("se")}                                              )
+\dontrun{rrisk.samplesBgr("se")}
 }
 \keyword{manip}
 

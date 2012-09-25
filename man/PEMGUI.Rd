@@ -47,7 +47,7 @@
 \value{
   The function \code{PEMGUI} returns an instance of the
   \code{\linkS4class{bayesmodelClass}} class containing
-  following informations \item{\code{convergence}}{logical,
+  following information \item{\code{convergence}}{logical,
   whether the model has converged (assessed by the user)}
   \item{\code{results}}{data frame containing statitsics of
   the posterior distribution} \item{\code{jointpost}}{data
@@ -63,6 +63,13 @@
 \description{
   This function provides a GUI for the function
   \link{rrisk.BayesPEM}.
+}
+\details{
+  The diagnostic parameters \code{se} and \code{sp} are
+  defined at the pool level, equivalent to
+  \code{missclass='pool'} in \code{rrisk.BayesPEM}
+  function. See \code{\link{rrisk.BayesPEM}} for more
+  details.
 }
 \note{
   The convergence of the model is assessed by the user

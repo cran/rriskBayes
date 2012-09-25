@@ -25,9 +25,9 @@ Authors@R: c(person(given="Natalia",
         Germany"), person(given="Alexander",
         family="Engelhardt",email="engelhardt@stat-up.de",role=c("aut"),comment="STAT-UP
         Statistical Consulting"))
-Version: 2.2
-Date: 2012-07-24
-Collate: 'rriskBayes-package.R' 'rriskBayes_functions_v2.2.R'
-Packaged: 2012-07-24 15:58:25 UTC; administrator
+Version: 2.3
+Date: 2012-09-25
+Collate: 'rriskBayes-package.R' 'rriskBayes_functions_v2.3new.R'
+Packaged: 2012-09-25 08:51:32 UTC; Administrator
 Repository: CRAN
-Date/Publication: 2012-07-26 15:35:04
+Date/Publication: 2012-09-26 09:05:12

@@ -156,7 +156,7 @@
   }} The application data (\code{k=1}) has one degree of
   freedom while the underlying model has three unknown
   parameters. Thus, the model is not identifiable and
-  informative priors on at least two model parameters is
+  informative priors on at least two model parameters are
   required. The Bayesian model for estimation prevalence,
   sensitivity and specificity takes a form
   \preformatted{model{

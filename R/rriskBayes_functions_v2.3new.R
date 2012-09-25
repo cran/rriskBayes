@@ -11,7 +11,7 @@
 #' @title Bayes estimation of a zero inflated Poisson (ZIP) model
 #' @usage ZIPGUI(data=NULL, prior.lambda=c(1,10), prior.pi=c(0.8,1),
 #'  chains=3, burn=1000, update=10000, thin=1)
-#' @param data a vector of numeric data, possibly containing zeros, and of minimal length 10.
+#' @param data a vector of numeric data, containing zeros, and of minimal length 10.
 #' @param prior.lambda numeric vector containing minimum and maximum of a uniform
 #' distribution used as prior for the Poisson parameter \code{lambda}, e.g. \cr \code{lambda} \eqn{\sim} \code{prior.lambda(*,*)=unif(*,*)}
 #' @param prior.pi numeric vector containing parameters of a beta distribution
@@ -23,7 +23,7 @@
 #'        inference, where k is the value of thin. Setting \code{thin > 1} can help to reduce the autocorrelation
 #'        in the sample.
 #' @return The function \code{ZIPGUI} returns an instance of the \code{\linkS4class{bayesmodelClass}}
-#' class containing following informations
+#' class containing following information
 #' \item{\code{convergence}}{logical, whether the model has converged (assessed by the user)}
 #' \item{\code{results}}{data frame containing statitsics of the posterior distribution}
 #' \item{\code{jointpost}}{data frame giving the joint posterior probability distribution}
@@ -63,11 +63,11 @@ ZIPGUI <- function(data=NULL, prior.lambda=c(1, 10), prior.pi=c(0.8, 1),
         } else {
           maintext<-paste("G.-R. statistic for",nodes[i])
         } # end if
-        rrisk.samplesBgr(nodes[i],main=maintext,cex.main=1)
-        abline(h=1,lty="dashed")  
+        suppressWarnings(rrisk.samplesBgr(nodes[i],main=maintext,cex.main=1))
+        suppressWarnings(abline(h=1,lty="dashed")  )
       } # end first for-loop
       for(i in 1:len){
-        plotDensity(nodes[i],main=paste("Density plot of ",nodes[i]),cex.main=1)
+        suppressWarnings(plotDensity(nodes[i],main=paste("Density plot of ",nodes[i]),cex.main=1))
       } # end second for-loop
     } else if (plotnumber==2){
       if(len<=3){
@@ -76,7 +76,7 @@ ZIPGUI <- function(data=NULL, prior.lambda=c(1, 10), prior.pi=c(0.8, 1),
         par(mfrow=c(2,3))
       } #enf if-else
       for(i in 1:len){
-        plotHistory(nodes[i],main=paste("Convergence monitored for node",nodes[i]),cex.main=1)
+        suppressWarnings(plotHistory(nodes[i],main=paste("Convergence monitored for node",nodes[i]),cex.main=1))
       } # emd for-loop  
     } else if(plotnumber==3){
       if(len<=3){
@@ -85,7 +85,7 @@ ZIPGUI <- function(data=NULL, prior.lambda=c(1, 10), prior.pi=c(0.8, 1),
         par(mfrow=c(2,3))
       } #enf if-else
       for(i in 1:len){
-        plotAutoC(nodes[i],main=paste("Autocorrelation plot for node",nodes[i]),cex.main=0.5)
+        suppressWarnings(plotAutoC(nodes[i],main=paste("Autocorrelation plot for node",nodes[i]),cex.main=0.5))
       } # emd for-loop  
     }# end overall if
   } # end function GUIDiag()
@@ -312,6 +312,10 @@ ZIPGUI <- function(data=NULL, prior.lambda=c(1, 10), prior.pi=c(0.8, 1),
 
 ################################################################################
 ################################################################################
+#' @details The diagnostic parameters \code{se} and \code{sp} are defined at
+#' the pool level, equivalent to \code{missclass='pool'} in \code{rrisk.BayesPEM}
+#' function. See \code{\link{rrisk.BayesPEM}} for more details.
+#'
 #' @description This function provides a GUI for the function \link{rrisk.BayesPEM}.
 #' 
 #' @name PEMGUI
@@ -332,7 +336,7 @@ ZIPGUI <- function(data=NULL, prior.lambda=c(1, 10), prior.pi=c(0.8, 1),
 #'        inference, where k is the value of thin. Setting \code{thin > 1} can help to reduce the autocorrelation
 #'        in the sample.
 #' @return The function \code{PEMGUI} returns an instance of the \code{\linkS4class{bayesmodelClass}}
-#' class containing following informations
+#' class containing following information
 #' \item{\code{convergence}}{logical, whether the model has converged (assessed by the user)}
 #' \item{\code{results}}{data frame containing statitsics of the posterior distribution}
 #' \item{\code{jointpost}}{data frame giving the joint posterior probability distribution}
@@ -714,7 +718,7 @@ setClass(Class="bayesmodelClass",
     } else cat("model: \n",object@model, "\n\n")
     if(is.null(object@chains))
     { cat("chains: \n NULL\n\n")
-    } else cat("chans: \n",object@chains, "\n\n")
+    } else cat("chains: \n",object@chains, "\n\n")
     if(is.null(object@burn))
     { cat("burn: \n NULL\n\n")
     } else cat("burn: \n",object@burn, "\n\n")
@@ -759,7 +763,7 @@ setClass(Class="bayesmodelClass",
 #' @keywords manip
 #' @export
 #' @examples
-#' \dontrun{rrisk.samplesBgr("se")}                                              )
+#' \dontrun{rrisk.samplesBgr("se")}                                           
 
 rrisk.samplesBgr<-function(node, beg=samplesGetBeg(), end=samplesGetEnd(),
   firstChain=samplesGetFirstChain(), lastChain=samplesGetLastChain(),
@@ -819,7 +823,7 @@ rrisk.samplesBgr<-function(node, beg=samplesGetBeg(), end=samplesGetEnd(),
 #' @usage diagnostics(nodes, plots=FALSE)
 #' @param nodes character string, the name of parameters(s)
 #' @param plots logical, if \code{TRUE} the diagnostic plots will be displayed in separate windows
-#' @return Returns \code{TRUE} if the user confirm convergence. Otherwise the 
+#' @return Returns \code{TRUE} if the user confirms convergence. Otherwise the 
 #' function returns \code{FALSE}.
 # @note Some notes...
 #' @seealso For more details see documentation to the functions \code{\link{samplesBgr}}, 
@@ -944,11 +948,11 @@ diagnostics<-function(nodes, plots=FALSE)
         } else {
           maintext<-paste("Gelman-Rubin conv. \nstatistic for",nodes[i])
         }
-        rrisk.samplesBgr(nodes[i],main=maintext,cex.main=1)
-        abline(h=1,lty="dashed")
+        suppressWarnings(rrisk.samplesBgr(nodes[i],main=maintext,cex.main=1))
+        suppressWarnings(abline(h=1,lty="dashed"))
       }
       for(i in 1:len){
-        plotDensity(nodes[i],main=paste("Density plot of ",nodes[i]),cex.main=1)
+        suppressWarnings(plotDensity(nodes[i],main=paste("Density plot of ",nodes[i]),cex.main=1))
       }
     } else if (plotnumber==2){ 
       if(len<=3){
@@ -956,14 +960,14 @@ diagnostics<-function(nodes, plots=FALSE)
       } else  par(mfrow=c(2,3))
       #par(mfrow=c(len,1))
       for(i in 1:len){ 
-        plotHistory(nodes[i],main=paste("Convergence monitored for node",nodes[i]),cex.main=1)
+        suppressWarnings(plotHistory(nodes[i],main=paste("Convergence monitored for node",nodes[i]),cex.main=1))
       }
     } else if(plotnumber==3){
       if(len<=3){
        par(mfrow=c(len,1))
       } else  par(mfrow=c(2,3))
       for(i in 1:len){ 
-      plotAutoC(nodes[i],main=paste("Autocorrelation plot for node",nodes[i]),cex.main=1)
+        suppressWarnings(plotAutoC(nodes[i],main=paste("Autocorrelation plot for node",nodes[i]),cex.main=1))
       }
     } # end if statement
   } # end of function plotDiag()
@@ -1044,7 +1048,7 @@ diagnostics<-function(nodes, plots=FALSE)
 #'      }}
 #' The application data (\code{k=1}) has one degree of freedom while the underlying model
 #' has three unknown parameters. Thus, the model is not identifiable and informative
-#' priors on at least two model parameters is required. The Bayesian model for estimation
+#' priors on at least two model parameters are required. The Bayesian model for estimation
 #' prevalence, sensitivity and specificity takes a form
 #' \preformatted{model{
 #'
@@ -1391,8 +1395,7 @@ rrisk.BayesPEM <- function(x, n, k, simulation=FALSE,
   #-----------------------------------------------------------------------------
   # estimation results from BRugs package
   #-----------------------------------------------------------------------------
-
-  results <- samplesStats(nodes,beg = samplesGetBeg(), end = samplesGetEnd(),
+  results <- .samplesStats1(nodes,beg = samplesGetBeg(), end = samplesGetEnd(),
     firstChain = samplesGetFirstChain(),
     lastChain = samplesGetLastChain())
   out@results <- results
@@ -1411,9 +1414,9 @@ rrisk.BayesPEM <- function(x, n, k, simulation=FALSE,
   sp.out <- samplesSample("sp")
   if(misclass == "compare") {
     out@jointpost <- data.frame(pi=NA,se=NA,sp=NA)
-    } else {
+  } else {
     out@jointpost <- data.frame(pi=pi.out,se=se.out,sp=sp.out)
-    }
+  }
 
     
   #-----------------------------------------------------------------------------
@@ -1469,7 +1472,7 @@ rrisk.BayesPEM <- function(x, n, k, simulation=FALSE,
 #' of Poisson distributed values with density parameter \code{lambda}. The prevalence
 #' parameter \code{pi} refers to the proportion of the second, true non-zero
 #' component.
-#' \cr
+#' \cr \cr
 #' The Bayesian model for estimation prevalence and lambda parameter has
 #' in BRugs/Winbugs syntax following form 
 #' \preformatted{model{
@@ -1495,7 +1498,7 @@ rrisk.BayesPEM <- function(x, n, k, simulation=FALSE,
 #' @title Bayes estimation of a zero inflated Poisson (ZIP) model
 #' @usage rrisk.BayesZIP(data, prior.lambda=c(1,10), prior.pi=c(0.8,1), simulation=FALSE,
 #'  chains=3, burn=1000, thin=1, update=10000, workdir=getwd(), plots=FALSE)
-#' @param data matrix or data frame, data set with positive integers, including zeros and of the minimal length 10.
+#' @param data matrix, data frame or data set with positive integers, including zeros and of the minimal length 10
 #' @param prior.lambda numeric vector containing minimum and maximum of a uniform
 #' distribution used as prior for the Poisson parameter \code{lambda}, e.g. \cr \code{lambda} \eqn{\sim} \code{prior.lambda(*,*)=unif(*,*)}
 #' @param prior.pi numeric vector containing parameters of a beta distribution
@@ -1725,7 +1728,7 @@ rrisk.BayesZIP <- function(data, prior.lambda=c(1,10), prior.pi=c(0.8,1), simula
   #-----------------------------------------------------------------------------
   # estimation results from BRugs package
   #-----------------------------------------------------------------------------
-  results <- samplesStats(c("pi","lambda"),beg = samplesGetBeg(), end = samplesGetEnd(),
+  results <- .samplesStats1(node=c("pi","lambda"),beg = samplesGetBeg(), end = samplesGetEnd(),
     firstChain = samplesGetFirstChain(),
     lastChain = samplesGetLastChain())
   out@results <- results
@@ -1772,6 +1775,68 @@ rrisk.BayesZIP <- function(data, prior.lambda=c(1,10), prior.pi=c(0.8,1), simula
   #write.table(out$model,file="doc.txt",quote=FALSE,row.names=FALSE,col.names=FALSE)
   return(out)
 } # end of function rrisk.BayesZIP()
+
+
+
+################################################################################
+################################################################################
+#' @name .samplesStats1
+#' @aliases .samplesStats1
+#' @title Auxiliary function
+#' @usage .samplesStats1(node, beg = samplesGetBeg(), end = samplesGetEnd(),
+#'    firstChain = samplesGetFirstChain(), lastChain = samplesGetLastChain(),
+#'    thin = samplesGetThin())
+#' @description Auxiliary function function for calculating summary statistics
+#' of joint posteriors
+#' @keywords manip
+
+.samplesStats1<-function (node, beg = samplesGetBeg(), end = samplesGetEnd(),
+    firstChain = samplesGetFirstChain(), lastChain = samplesGetLastChain(),
+    thin = samplesGetThin())
+{
+    oldBeg <- samplesGetBeg()
+    oldEnd <- samplesGetEnd()
+    oldFirstChain <- samplesGetFirstChain()
+    oldLastChain <- samplesGetLastChain()
+    oldThin <- samplesGetThin()
+    on.exit({
+        samplesSetBeg(oldBeg)
+        samplesSetEnd(oldEnd)
+        samplesSetFirstChain(oldFirstChain)
+        samplesSetLastChain(oldLastChain)
+        samplesSetThin(oldThin)
+    })
+    samplesSetBeg(beg)
+    samplesSetEnd(end)
+    samplesSetFirstChain(firstChain)
+    samplesSetLastChain(lastChain)
+    thin <- max(c(thin, 1))
+    samplesSetThin(thin)
+    if (is.R()) {
+        result <- data.frame(mean = NULL, sd = NULL, MC_error = NULL,
+            val2.5pc = NULL, median = NULL, val97.5pc = NULL,
+            start = NULL, sample = NULL)
+    } else {
+        result <- data.frame(mean = numeric(), sd = numeric(),
+            MC.error = numeric(), val2.5pc = numeric(), median = numeric(),
+            val97.5pc = numeric(), start = numeric(), sample = numeric())
+    }
+    for (i in seq(along = node)) {
+        command <- paste(BRugs:::.SamplesGlobalsCmd(node[i]), "SamplesEmbed.StatsGuard;SamplesEmbed.Stats")
+        BRugs:::.CmdInterpreter(command)
+        buffer <- file.path(tempdir(), "buffer.txt")
+        rlb <- readLines(buffer)
+        len <- length(rlb)
+        if (len > 1)
+            result <- rbind(result, read.table(buffer))
+        else {
+            if (length(grep("val97.5pc", rlb)))
+                message("Variable ", node[i], " has probably not been updated")
+            else message("Variable ", node[i], ": ", rlb)
+        }
+    }
+    return(result)
+} # end of function samplesStats1()
 
     
     

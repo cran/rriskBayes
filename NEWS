@@ -1,0 +1,6 @@
+
+Version 2.5 
+   * Functions ZIPGUI(), PEMGUI(), rrisk.BayesZIP() and rrisk.BayesPEM() return now correct
+     slot 'results' in output.
+
+

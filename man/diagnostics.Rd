@@ -11,7 +11,7 @@
   will be displayed in separate windows}
 }
 \value{
-  Returns \code{TRUE} if the user confirm convergence.
+  Returns \code{TRUE} if the user confirms convergence.
   Otherwise the function returns \code{FALSE}.
 }
 \description{

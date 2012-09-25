@@ -7,8 +7,8 @@
     thin=1)
 }
 \arguments{
-  \item{data}{a vector of numeric data, possibly containing
-  zeros, and of minimal length 10.}
+  \item{data}{a vector of numeric data, containing zeros,
+  and of minimal length 10.}
 
   \item{prior.lambda}{numeric vector containing minimum and
   maximum of a uniform distribution used as prior for the
@@ -38,7 +38,7 @@
 \value{
   The function \code{ZIPGUI} returns an instance of the
   \code{\linkS4class{bayesmodelClass}} class containing
-  following informations \item{\code{convergence}}{logical,
+  following information \item{\code{convergence}}{logical,
   whether the model has converged (assessed by the user)}
   \item{\code{results}}{data frame containing statitsics of
   the posterior distribution} \item{\code{jointpost}}{data

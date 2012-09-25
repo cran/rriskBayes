@@ -8,8 +8,8 @@
     plots=FALSE)
 }
 \arguments{
-  \item{data}{matrix or data frame, data set with positive
-  integers, including zeros and of the minimal length 10.}
+  \item{data}{matrix, data frame or data set with positive
+  integers, including zeros and of the minimal length 10}
 
   \item{prior.lambda}{numeric vector containing minimum and
   maximum of a uniform distribution used as prior for the
@@ -76,7 +76,7 @@
   Poisson distributed values with density parameter
   \code{lambda}. The prevalence parameter \code{pi} refers
   to the proportion of the second, true non-zero component.
-  \cr The Bayesian model for estimation prevalence and
+  \cr \cr The Bayesian model for estimation prevalence and
   lambda parameter has in BRugs/Winbugs syntax following
   form \preformatted{model{
 
